@@ -1,0 +1,69 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://s21882.pjwstk.edu.pl"
+           targetNamespace="http://s21882.pjwstk.edu.pl" elementFormDefault="qualified">
+
+    <xs:element name="getListRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="date" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getListResponse">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="domki" type="tns:domekObject"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="domekObject">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="capacity" type="xs:int"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="occupied" type="xs:date"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="claimDomekRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="domek" type="tns:domekObject"/>
+                <xs:element name="date" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="claimDomekResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+                <xs:element name="response" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="complainRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="domek" type="tns:domekObject"/>
+                <xs:element name="skarga" type="xs:string"/>
+                <xs:element name="nazwisko" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="complainResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="response" type="xs:string"/>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
